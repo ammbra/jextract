@@ -18,7 +18,7 @@ jobs:
   validate-gradle-wrapper:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.1.1
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           fetch-depth: 1
       - uses: gradle/actions/wrapper-validation@v4
@@ -35,7 +35,7 @@ jobs:
 
     - name: 'Check out JTReg'
       if: ${{ steps.get-cached-jtreg.outputs.cache-hit != 'true' }}
-      uses: actions/checkout@v4.1.1
+      uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
       with:
         repository: 'openjdk/jtreg'
         ref: 'jtreg-${{ env.JTREG_VERSION }}'
@@ -70,7 +70,7 @@ jobs:
 
     steps:
     - name: 'Check out repository'
-      uses: actions/checkout@v4.1.1
+      uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
       with:
         fetch-depth: 1
 
@@ -88,10 +88,10 @@ jobs:
 
     - name: 'Download toolchain JDK'
       id: download-toolchain-jdk
-      uses: oracle-actions/setup-java@v1.3.4
+      uses: oracle-actions/setup-java@v1.5.0
       if: ${{ steps.get-cached-toolchain.outputs.cache-hit != 'true' }}
       with:
-        website: jdk.java.net
+        website: oracle.com
         release: ${{ env.TOOLCHAIN_VERSION }}
         install: false
 
@@ -122,8 +122,9 @@ jobs:
         ${{ matrix.DEPS_ROOT }}/jdk-toolchain/bin/java --version
 
     - name: 'Setup Gradle Java'
-      uses: oracle-actions/setup-java@v1.3.4
+      uses: oracle-actions/setup-java@v1.5.0
       with:
+        website: oracle.com
         release: ${{ env.GRADLE_JAVA_VERSION }}
 
     - name: 'Check default Java version'
