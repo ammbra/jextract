@@ -135,7 +135,7 @@ jobs:
 
     - name: 'Check cache for LLVM'
       id: get-cached-llvm
-      uses: actions/cache@v4
+      uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
       with:
         path: ${{ matrix.DEPS_ROOT }}/llvm/image
         key: llvm-${{ env.CLANG_LLVM_VERSION }}-${{ matrix.os }}
@@ -171,7 +171,7 @@ jobs:
         sh ./gradlew -Pjdk_home=${{ matrix.DEPS_ROOT }}/jdk-toolchain -Pllvm_home=${{ matrix.DEPS_ROOT }}/llvm/image clean verify
 
     - name: 'Get cached JTReg'
-      uses: actions/cache@v4
+      uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
       with:
         path: ./deps/jtreg/build/images/jtreg
         enableCrossOsArchive: true
