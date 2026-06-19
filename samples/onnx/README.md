@@ -1,29 +1,22 @@
-1. Clone `onnxruntime-genai` and build Java bindings:
+To run Generative AI models with ONNX runtime, make sure to have downloaded a native [`libonnxruntime`](https://github.com/microsoft/onnxruntime/release) and [`libonnxruntime-genai`](https://github.com/microsoft/onnxruntime-genai/releases).
+The compatible `libonnxruntime` library must be present in the same folder as `libonnxruntime-genai` library. 
 
-    ```bash
-    git clone https://github.com/microsoft/onnxruntime-genai.git
-    cd onnxruntime-genai
-    ./build.sh --build_java --config Release
-   ````
-    or
-   ```bash
-    ./build.sh
-    ```
 
-2. Set `ONNX_LIB_PATH` to the directory containing the built native library
+1. Set `ONNX_LIB_PATH` to the directory containing the built native libraries. The native library extension (`.dylib` or `.so` or `.dll`) is platform specific.
+
    (e.g. where `libonnxruntime-genai.so` or `.dylib` lives):
 
     ```bash
-    export ONNX_LIB_PATH=/.../onnxruntime-genai/build/macOS/RelWithDebInfo/
+    export ONNX_LIB_PATH=/path/.../onnxruntime-genai/lib/
     ```
 
-3. Set `ORT_GENAI_DIR` to your clone of `onnxruntime-genai` before running `compile.sh`:
+2. Set `ORT_GENAI_INCLUDE_DIR` to your clone of `onnxruntime-genai` before running `compile.sh`:
 
     ```bash
-    export ORT_GENAI_DIR=/path/.../onnxruntime-genai/
+    export ORT_GENAI_INCLUDE_DIR=/path/.../onnxruntime-genai/include
     ```
 
-4. Download or prepare a valid ONNX model:
+3. Download or prepare a valid ONNX model:
 
    ```bash
     git clone https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-onnx
@@ -31,13 +24,13 @@
     export MODEL_PATH=/path/.../Phi-3-mini-4k-instruct-onnx/cpu_and_mobile/cpu-int4-rtn-block-32-acc-level-4/
     ```
 
-5. Run `compile.sh`:
+4. Run `compile.sh`:
 
     ```bash
     ./compile.sh
     ```
 
-6. Run the example:
+5. Run the example:
 
     ```bash
     sh ./run.sh
