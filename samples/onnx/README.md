@@ -1,21 +1,28 @@
 To run Generative AI models with ONNX runtime, make sure to have downloaded a native [`libonnxruntime`](https://github.com/microsoft/onnxruntime/release) and [`libonnxruntime-genai`](https://github.com/microsoft/onnxruntime-genai/releases).
-The compatible `libonnxruntime` library must be present in the same folder as `libonnxruntime-genai` library. 
+The compatible `libonnxruntime` library must be present in the same folder as `libonnxruntime-genai` library, like in the tree below.
+
+```text
+onnxruntime-genai/
+├── include
+│ ├── ort_genai.h
+│ └── ort_genai_c.h
+└── lib
+    ├── libonnxruntime-genai.dylib
+    └── libonnxruntime.dylib
+```
 
 
-1. Set `ONNX_LIB_PATH` to the directory containing the built native libraries. The native library extension (`.dylib` or `.so` or `.dll`) is platform specific.
-
-   (e.g. where `libonnxruntime-genai.so` or `.dylib` lives):
+1. Set `ONNX_PATH` to the directory containing the built native libraries. The native library extension (`.dylib` or `.so` or `.dll`) is platform specific.
 
     ```bash
-    export ONNX_LIB_PATH=/path/.../onnxruntime-genai/lib/
+    export ONNX_PATH=/path/.../onnxruntime-genai/
     ```
-
-2. Set `ORT_GENAI_INCLUDE_DIR` to your clone of `onnxruntime-genai` before running `compile.sh`:
+2. Run `compile.sh`:
 
     ```bash
-    export ORT_GENAI_INCLUDE_DIR=/path/.../onnxruntime-genai/include
+    ./compile.sh
     ```
-
+   
 3. Download or prepare a valid ONNX model:
 
    ```bash
@@ -24,13 +31,7 @@ The compatible `libonnxruntime` library must be present in the same folder as `l
     export MODEL_PATH=/path/.../Phi-3-mini-4k-instruct-onnx/cpu_and_mobile/cpu-int4-rtn-block-32-acc-level-4/
     ```
 
-4. Run `compile.sh`:
-
-    ```bash
-    ./compile.sh
-    ```
-
-5. Run the example:
+4. Run the example:
 
     ```bash
     sh ./run.sh
