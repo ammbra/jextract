@@ -112,10 +112,12 @@ You are a helpful and accurate assistant.<|end|>
 
     public int prompt(String userPrompt) {
         var inputTokens = call(OgaCreateSequences(ret));
+        int ntokens = 0;
         try {
             call(OgaTokenizerEncode(tokenizer, arena.allocateFrom(PROMPT_TEMPLATE.formatted(userPrompt)), inputTokens));
             call(OgaGenerator_AppendTokenSequences(generator, inputTokens));
             while (!OgaGenerator_IsDone(generator)) {
+                ntokens++;
                 call(OgaGenerator_GenerateNextToken(generator));
                 int nextToken = call(OgaGenerator_GetNextTokens(generator, ret, count)).get(C_INT, 0);
                 String response = call(OgaTokenizerStreamDecode(tokenizerStream, nextToken, ret)).getString(0);
