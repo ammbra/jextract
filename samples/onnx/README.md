@@ -1,10 +1,10 @@
 To run Generative AI models with ONNX runtime, make sure to have downloaded a native [`libonnxruntime`](https://github.com/microsoft/onnxruntime/release) and [`libonnxruntime-genai`](https://github.com/microsoft/onnxruntime-genai/releases).
 
-1. The [`libonnxruntime-genai`](https://github.com/microsoft/onnxruntime-genai/releases) binary needs the statically built binaries from [`libonnxruntime`](https://github.com/microsoft/onnxruntime/release), so you need to set `ORT_LIB_PATH` to the directory containing the downloaded [`libonnxruntime`](https://github.com/microsoft/onnxruntime/release), then the ONNX_GEN_AI_HOME to [`libonnxruntime-genai`](https://github.com/microsoft/onnxruntime-genai/releases). 
+1. The [`libonnxruntime-genai`](https://github.com/microsoft/onnxruntime-genai/releases) binary needs the statically built binaries from [`libonnxruntime`](https://github.com/microsoft/onnxruntime/release), so you have to set `ORT_LIB_PATH` to the directory containing the downloaded [`libonnxruntime`](https://github.com/microsoft/onnxruntime/release), then the ONNX_GEN_AI_HOME to [`libonnxruntime-genai`](https://github.com/microsoft/onnxruntime-genai/releases). 
 The native library extension (`.dylib` or `.so` or `.dll`) is platform specific.
 
     ```bash
-    export ORT_LIB_PATH=/path/.../onnxruntime/
+    export ORT_LIB_PATH=/path/.../onnxruntime/lib/libonnxruntime.[dylib|so|dll]
     export ONNX_GENAI_HOME=/path/.../onnxruntime-genai/
     ```
 2. Run `compile.sh`:
